@@ -13,6 +13,11 @@ import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
+import bzh.ariad.checker.parser.mrz.BirthDateJson;
+import bzh.ariad.checker.parser.mrz.HolderDetailJson;
+import bzh.ariad.checker.parser.mrz.MrzResponseJson;
+import bzh.ariad.checker.parser.mrz.MrzResponseParser;
+
 /**
  * @author Regis Le Coz
  */
@@ -42,9 +47,8 @@ class MrzParserTest {
 	void testParse() throws Exception {
 
 		String json = loadJson("docVal.json");
-		
-		MrzParser parser = new MrzParser();
-		MrzJson mrz = parser.parse(json);
+		MrzResponseParser parser = new MrzResponseParser();
+		MrzResponseJson mrz = parser.parse(json);
 		assertNotNull(mrz);
 		
 		assertEquals("4968174368",mrz.getUid() );

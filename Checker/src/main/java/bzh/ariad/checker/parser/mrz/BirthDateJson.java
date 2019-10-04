@@ -1,4 +1,4 @@
-package bzh.ariad.checker.parser;
+package bzh.ariad.checker.parser.mrz;
 
 /**
  * @author Regis Le Coz

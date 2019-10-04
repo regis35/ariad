@@ -1,4 +1,4 @@
-package bzh.ariad.checker.parser;
+package bzh.ariad.checker.parser.mrz;
 
 import org.springframework.stereotype.Component;
 
@@ -10,14 +10,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author Regis Le Coz
  */
 @Component
-public class MrzParser {
+public class MrzResponseParser {
 
-	public MrzJson parse(String json) throws Exception {
+	public MrzResponseJson parse(String json) throws Exception {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-		MrzJson mzr = objectMapper.readValue(json, MrzJson.class);  
+		MrzResponseJson mzr = objectMapper.readValue(json, MrzResponseJson.class);  
 		
 		return mzr;
 	}

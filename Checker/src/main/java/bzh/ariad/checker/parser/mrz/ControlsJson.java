@@ -1,4 +1,4 @@
-package bzh.ariad.checker.parser;
+package bzh.ariad.checker.parser.mrz;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

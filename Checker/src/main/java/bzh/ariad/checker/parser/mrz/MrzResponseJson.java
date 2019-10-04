@@ -1,4 +1,4 @@
-package bzh.ariad.checker.parser;
+package bzh.ariad.checker.parser.mrz;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 /**
  * @author Regis Le Coz
  */
-public class MrzJson {
+public class MrzResponseJson {
 
 	/**
 	 * @return the holderDetail
