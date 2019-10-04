@@ -18,5 +18,5 @@
 	</root>
 
 	<logger name="org.springframework.web" level="DEBUG" />
-	<logger name="bzh.ariad.social.facebook" level="DEBUG" />
+	<logger name="bzh.ariad" level="DEBUG" />
 </configuration>

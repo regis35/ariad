@@ -44,7 +44,7 @@ public class CheckerIdCardController {
 	@ApiResponses (value = {
 			@ApiResponse(code = 406 , message = "The ID card information is not correct")
 	})
-	public CardIdInformation getInformation(@Valid @PathVariable @NotBlank String userId, @RequestParam(required = true) @NotBlank String line1, @RequestParam(required = false) String line2, @RequestParam(required = false) String line3 ) throws NotValidCardIdException{
+	public CardIdInformation getInformation(@Valid @PathVariable("userId") @NotBlank String userId, @RequestParam(name = "line1",required = true) @NotBlank String line1, @RequestParam(name = "line2",required = false) String line2, @RequestParam(name = "line3",required = false) String line3 ) throws NotValidCardIdException{
 		
 		List<String> cardIdLines = new ArrayList<>(3);
 		if (!StringUtils.isEmpty(line1)) {
