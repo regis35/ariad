@@ -17,8 +17,8 @@
 	</parent>
 
 	<modules>
-		<module>./Checker</module>
-		<module>./Social-fb</module>
+		<module>./CheckerID</module>
+		<module>./SocialAuthenFB</module>
 	</modules>
 
 	<properties>

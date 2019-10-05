@@ -70,7 +70,7 @@
 			"identifier": "MRZ_CONFORMITY",
 			"titleMsg": "MRZ validity",
 			"resultMsg": "The MRZ of the document is invalid",
-			"result": "ERROR",
+			"result": "OK",
 			"control": [
 				{
 					"identifier": "MRZ_FIELDS_SYNTAX",
@@ -90,7 +90,7 @@
 			"identifier": "MRZ_OCR_CONSISTENCY",
 			"titleMsg": "Consistency between MRZ and document data",
 			"resultMsg": "Consistency between MRZ and document data has not been verified",
-			"result": "NONE",
+			"result": "OK",
 			"control": [
 				{
 					"identifier": "OCR_LASTNAME",

@@ -24,8 +24,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import bzh.ariad.checker.dto.CardIdInformation;
+import bzh.ariad.checker.dto.GenderEnum;
 import bzh.ariad.checker.exception.NotValidCardIdException;
-import bzh.ariad.checker.service.CheckerCardIdService;
+import bzh.ariad.checker.service.CheckerCardIdServiceImpl;
 import bzh.ariad.checker.ws.CheckerIdCardController;
 
 @AutoConfigureMockMvc
@@ -36,7 +37,7 @@ import bzh.ariad.checker.ws.CheckerIdCardController;
 class CheckerIdCardControllerTestIT {
 
 	@MockBean
-	private CheckerCardIdService checkerCardIdService;
+	private CheckerCardIdServiceImpl checkerCardIdService;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -106,4 +107,26 @@ class CheckerIdCardControllerTestIT {
 				.andReturn();
 	}
 
+	@Test
+	@DisplayName("Nominal case, all line")
+	void testGetInformationOkAllLine() throws Exception {
+		
+		String userId = "kiki";
+		String line1 = "line1";
+		String line2 = "line2";
+		String line3 = "line3";
+		
+		CardIdInformation cii = new CardIdInformation();
+		cii.setUserId(userId);
+		cii.setBirthDate(LocalDate.of(1978, 8, 19));
+		cii.setFirstName("Regis");
+		cii.setLastName("Le Coz");
+		cii.setGender(GenderEnum.F);
+		when(checkerCardIdService.getInformation(eq("kiki"), anyList())).thenReturn(cii);
+
+		mockMvc.perform(get("/checker/cardId/{userId}", userId).param("line1", line1)
+				.param("line2", line2).param("line3", line3).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().string("{\"userId\":\"kiki\",\"lastName\":\"Le Coz\",\"firstName\":\"Regis\",\"gender\":\"F\",\"birthDate\":\"1978-08-19\"}"))
+				.andReturn();
+	}
 }

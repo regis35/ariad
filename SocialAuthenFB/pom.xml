@@ -4,14 +4,14 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>Social-fb</artifactId>
+	<artifactId>SocialAuthenFB</artifactId>
 	<packaging>jar</packaging>
 
 	<name>Composant Social Facebook</name>
 
 	<parent>
 		<groupId>bzh.ariad</groupId>
-		<artifactId>Ariad-parent</artifactId>
+		<artifactId>ariad-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>

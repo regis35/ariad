@@ -1,7 +1,6 @@
 package bzh.ariad.checker.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,7 +35,7 @@ import bzh.ariad.checker.parser.mrz.MrzResponseParser;
  * @author Regis Le Coz
  */
 @Service
-public class CheckerCardIdService {
+public class CheckerCardIdServiceImpl implements CheckerCardIdService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CheckerCardIdService.class);
 	
@@ -51,17 +50,13 @@ public class CheckerCardIdService {
 	@Value("${ariad.token}")
 	private String ariadToken;
 
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	private static final String AUTHORIZATION_KEY = "Authorization";
 	private static final String TOKEN_TEMPLATE = "Basic %s";
 
-	/**
-	 * Call ariadNext service, and get cardId information
-	 * 
-	 * @param userId UserId
-	 * @param lines  Lines of CardId
-	 * @return CardIdInformation Object
-	 * @throws NotValidCardIdException
-	 */
+	@Override
 	public CardIdInformation getInformation(String userId, List<String> lines) throws NotValidCardIdException {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -72,7 +67,6 @@ public class CheckerCardIdService {
 		LOGGER.info("Send to url : " + ariadUrl + "/task/mrz-> content : " + body);
 		HttpEntity<String> entity = new HttpEntity<String>(body, headers);
 
-		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> respEntity = restTemplate.exchange(ariadUrl + "/task/mrz", HttpMethod.POST, entity,
 				String.class);
 
@@ -97,14 +91,7 @@ public class CheckerCardIdService {
 		return info;
 	}
 
-	public static void main(String[] args) {
-		
-		List<String> s = new ArrayList<String>();
-		s.get(10);
-		
-	}
-	
-	private String buildBody(List<String> lines) {
+	public String buildBody(List<String> lines) {
 		MrzRequestJson request = new MrzRequestJson();
 		try {
 			request.setLine1(lines.get(0));
@@ -125,7 +112,7 @@ public class CheckerCardIdService {
 	 * 
 	 * @return CardIdInformation Object
 	 */
-	private CardIdInformation buildCardIdInformation(String userId, HolderDetailJson holderDetailJson) {
+	public CardIdInformation buildCardIdInformation(String userId, HolderDetailJson holderDetailJson) {
 
 		GenderEnum gender = GenderEnum.valueOf(holderDetailJson.getGender());
 
@@ -157,7 +144,7 @@ public class CheckerCardIdService {
 	 * @param mrzJson
 	 * @return true if cardId is valid else return false
 	 */
-	private boolean isValidCardId(MrzResponseJson mrzJson) {
+	public boolean isValidCardId(MrzResponseJson mrzJson) {
 		boolean result = false;
 		if (mrzJson != null) {
 			List<ControlsJson> controls = mrzJson.getControls();

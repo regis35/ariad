@@ -1,7 +1,5 @@
 package bzh.ariad.checker.parser.mrz;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
  * @author Regis Le Coz
  *
