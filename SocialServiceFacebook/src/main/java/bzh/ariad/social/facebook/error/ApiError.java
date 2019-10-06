@@ -1,10 +1,6 @@
-package bzh.ariad.checker.error;
-
-import java.time.LocalDateTime;
+package bzh.ariad.social.facebook.error;
 
 import org.springframework.http.HttpStatus;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ApiError {
 

@@ -1,4 +1,4 @@
-package bzh.ariad.checker.ws;
+package bzh.ariad.social.facebook.ws;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,9 +21,9 @@ public class CustomErrorController implements ErrorController {
 	@RequestMapping("error")
 	public void handlerError(HttpServletRequest request) throws RuntimeException {
 		String requestUri = (String) request.getAttribute(REQUEST_URI);
-		RuntimeException exception = new RuntimeException("Unknown path -> " + requestUri);
+		RuntimeException exception = new RuntimeException("error");
 		if (!StringUtils.isEmpty(requestUri)) {
-			exception.addSuppressed(new Throwable("Unknown path : " + requestUri));
+			exception.addSuppressed(new Throwable("Unknown path -> " + requestUri));
 		}
 		throw exception;
 	}

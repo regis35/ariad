@@ -17,6 +17,6 @@
 		<appender-ref ref="CONSOLE" />
 	</root>
 
-	<logger name="org.springframework.web" level="DEBUG" />
-	<logger name="bzh.ariad" level="INFO" />
+	<logger name="org.springframework.web" level="ERROR" />
+	<logger name="bzh.ariad.social.facebook" level="DEBUG" />
 </configuration>

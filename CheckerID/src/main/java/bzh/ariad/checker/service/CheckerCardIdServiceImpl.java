@@ -81,7 +81,7 @@ public class CheckerCardIdServiceImpl implements CheckerCardIdService{
 			throw new RuntimeException("Error when parsing mrz json");
 		}
 		
-		if (!isValidCardId(mrzJson) || mrzJson.getHolderDetail() != null) {
+		if (!isValidCardId(mrzJson) || mrzJson.getHolderDetail() == null) {
 			throw new NotValidCardIdException("The cardId of user " + userId + " is invalid");
 		}
 
@@ -151,7 +151,7 @@ public class CheckerCardIdServiceImpl implements CheckerCardIdService{
 			if (controls != null && !controls.isEmpty()) {
 				result = true;
 				for (ControlsJson controlsJson : controls) {
-					if (!"OK".equals(controlsJson.getResult())) {
+					if ("ERROR".equals(controlsJson.getResult())) {
 						result = false;
 						break;
 					}
