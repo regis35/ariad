@@ -1,7 +1,5 @@
 package bzh.ariad.social.facebook.ws;
 
-import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import bzh.ariad.common.UserDto;
@@ -44,6 +42,12 @@ public class FacebookController {
 		ResponseEntity<Object> entity = new ResponseEntity<>(error, error.getStatus());
 
 		return entity;
+	}
+	
+	@GetMapping("/user")
+	public UserDto getUserInfo(@RequestHeader(name = "token") String token, @RequestHeader(name = "userInfoEndpointUri") String userInfoEndpointUri) {
+		
+		return service.getInformation(token,userInfoEndpointUri);
 	}
 	
 }

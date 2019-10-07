@@ -1,0 +1,20 @@
+
+Authentification via facebook
+
+-> http://localhost:8090/login
+
+Liste des utilisateurs
+-> http://localhost:8081/users
+
+
+Redis
+
+Supprime toutes les données de redis
+-> FLUSHALL
+Liste les keys
+-> KEYS *
+
+
+$ docker exec -it redisAriad /bin/bash
+
+$ redis-cli

@@ -1,4 +1,4 @@
-package bzh.ariad.social.facebook.redis;
+package bzh.ariad.checker.service;
 
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.Wait;
