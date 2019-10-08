@@ -1,4 +1,4 @@
-package bzh.ariad.checker.service;
+package bzh.ariad.social.facebook.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import bzh.ariad.checker.entity.TokenEntity;
-import bzh.ariad.checker.repository.TokenRepository;
 import bzh.ariad.common.SocialUserDto;
 import bzh.ariad.common.UserIdDto;
+import bzh.ariad.social.facebook.entity.TokenEntity;
+import bzh.ariad.social.facebook.repository.TokenRepository;
 
 /**
  * Token service impl

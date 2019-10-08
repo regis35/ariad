@@ -1,5 +1,7 @@
 package bzh.ariad.social.facebook.ws;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bzh.ariad.common.UserDto;
 import bzh.ariad.common.UserIdDto;
+import bzh.ariad.social.facebook.entity.TokenEntity;
 import bzh.ariad.social.facebook.error.ApiError;
 import bzh.ariad.social.facebook.exception.UserComposantException;
 import bzh.ariad.social.facebook.service.FacebookService;
+import bzh.ariad.social.facebook.service.TokenService;
 
 @RestController
 public class FacebookController {
@@ -24,12 +28,15 @@ public class FacebookController {
 
 	@Autowired
 	private FacebookService service;
-
+	
+	@Autowired
+	private TokenService tokenService;
+	
 	@GetMapping("/login/success")
 	public UserIdDto login(Model model, OAuth2AuthenticationToken authentication) throws UserComposantException {
 
 		LOGGER.error("facebook login success");
-		return service.senUserInfoToCheckerID(authentication);
+		return service.createUser(authentication);
 	}
 
 	@GetMapping("/login/failure")
@@ -50,4 +57,8 @@ public class FacebookController {
 		return service.getInformation(token,userInfoEndpointUri);
 	}
 	
+	@GetMapping("/tokens")
+	public List<TokenEntity> list() {
+		return tokenService.list();
+	}
 }

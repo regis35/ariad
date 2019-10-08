@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import bzh.ariad.checker.dto.CardIdInformation;
 import bzh.ariad.checker.exception.NotValidCardIdException;
-import bzh.ariad.checker.service.CheckerCardIdService;
+import bzh.ariad.checker.service.CheckUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -30,21 +29,21 @@ import io.swagger.annotations.ApiResponses;
  * @author Regis Le Coz
  */
 @RestController
-@RequestMapping("checker")
-@Api("card ID service")
+@RequestMapping("verify")
+@Api("This service valid user identity")
 public class CheckerIdCardController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CheckerIdCardController.class);
 	
 	@Autowired
-	private CheckerCardIdService service;
+	private CheckUserService service;
 	
-	@GetMapping(value="/cardId/{userId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ApiOperation(value = "load user information")
+	@GetMapping(value="/{userId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiOperation(value = "verify user information")
 	@ApiResponses (value = {
 			@ApiResponse(code = 406 , message = "The ID card information is not correct")
 	})
-	public CardIdInformation getInformation(@Valid @PathVariable("userId") @NotBlank String userId, @RequestParam(name = "line1",required = true) @NotBlank String line1, @RequestParam(name = "line2",required = false) String line2, @RequestParam(name = "line3",required = false) String line3 ) throws NotValidCardIdException{
+	public boolean getInformation(@Valid @PathVariable("userId") @NotBlank String userId, @RequestParam(name = "line1",required = true) @NotBlank String line1, @RequestParam(name = "line2",required = false) String line2, @RequestParam(name = "line3",required = false) String line3 ) throws NotValidCardIdException{
 		
 		List<String> cardIdLines = new ArrayList<>(3);
 		if (!StringUtils.isEmpty(line1)) {
@@ -60,7 +59,7 @@ public class CheckerIdCardController {
 			cardIdLines.add(line3);
 		}
 		
-		return service.getInformation(userId, cardIdLines);
+		return service.isValid(userId, cardIdLines);
 	}
 	
 }

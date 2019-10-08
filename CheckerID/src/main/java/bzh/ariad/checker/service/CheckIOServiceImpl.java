@@ -35,9 +35,9 @@ import bzh.ariad.checker.parser.mrz.MrzResponseParser;
  * @author Regis Le Coz
  */
 @Service
-public class CheckerCardIdServiceImpl implements CheckerCardIdService{
+public class CheckIOServiceImpl implements CheckIOService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(CheckerCardIdService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CheckIOService.class);
 	
 	private static final ObjectMapper mapper = new ObjectMapper();
 	

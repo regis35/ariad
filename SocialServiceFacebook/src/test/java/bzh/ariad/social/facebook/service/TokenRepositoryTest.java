@@ -1,4 +1,4 @@
-package bzh.ariad.checker.service;
+package bzh.ariad.social.facebook.service;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,8 +16,8 @@ import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import bzh.ariad.checker.entity.TokenEntity;
-import bzh.ariad.checker.repository.TokenRepository;
+import bzh.ariad.social.facebook.entity.TokenEntity;
+import bzh.ariad.social.facebook.repository.TokenRepository;
 
 @ExtendWith(SpringExtension.class)
 @DataRedisTest

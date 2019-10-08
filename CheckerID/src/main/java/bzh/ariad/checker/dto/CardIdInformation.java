@@ -94,7 +94,7 @@ public class CardIdInformation {
 
 	@Override
 	public String toString() {
-		return "CardIdInformation [userId=" + userId + ", lastName=" + lastName + ", firstName=" + firstName
+		return "[userId=" + userId + ", lastName=" + lastName + ", firstName=" + firstName
 				+ ", gender=" + gender + ", birthDate=" + birthDate + "]";
 	}
 }

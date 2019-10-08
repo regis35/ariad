@@ -1,4 +1,4 @@
-package bzh.ariad.checker.entity;
+package bzh.ariad.social.facebook.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

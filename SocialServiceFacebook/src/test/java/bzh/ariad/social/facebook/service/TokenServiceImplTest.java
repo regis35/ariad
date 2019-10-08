@@ -1,4 +1,4 @@
-package bzh.ariad.checker.service;
+package bzh.ariad.social.facebook.service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,16 +15,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import bzh.ariad.checker.entity.TokenEntity;
-import bzh.ariad.checker.repository.TokenRepository;
 import bzh.ariad.common.SocialUserDto;
 import bzh.ariad.common.UserIdDto;
+import bzh.ariad.social.facebook.entity.TokenEntity;
+import bzh.ariad.social.facebook.repository.TokenRepository;
 
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Exemple de testU avec Mockito, en passant par la couche Http")

@@ -5,7 +5,7 @@ import java.util.List;
 import bzh.ariad.checker.dto.CardIdInformation;
 import bzh.ariad.checker.exception.NotValidCardIdException;
 
-public interface CheckerCardIdService {
+public interface CheckIOService {
 
 	/**
 	 * Call ariadNext service, and get cardId information

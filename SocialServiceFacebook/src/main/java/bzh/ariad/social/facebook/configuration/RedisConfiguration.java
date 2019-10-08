@@ -1,4 +1,4 @@
-package bzh.ariad.checker.configuration;
+package bzh.ariad.social.facebook.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

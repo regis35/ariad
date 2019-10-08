@@ -32,7 +32,7 @@ public class FacebookService {
 	private OAuth2AuthorizedClientService authorizedService;
 	
 	@Autowired
-	private UserService userService;
+	private TokenService tokenService;
 	
 	@Autowired
 	private RestTemplate restTemplate;
@@ -41,7 +41,7 @@ public class FacebookService {
 	 * This service sends the authentication information to the checkerID component
 	 * @return UserId
 	 */
-	public UserIdDto senUserInfoToCheckerID(OAuth2AuthenticationToken authentication) throws UserComposantException {
+	public UserIdDto createUser(OAuth2AuthenticationToken authentication) throws UserComposantException {
 		
 		LOGGER.debug("[Start] senUserInfoToCheckerID(");
 
@@ -69,7 +69,7 @@ public class FacebookService {
 
 		LOGGER.debug("Object creates : " + socialUser);
 		
-		return userService.createUser(socialUser);
+		return tokenService.createUser(socialUser);
 	}
 	
 	@SuppressWarnings("rawtypes")

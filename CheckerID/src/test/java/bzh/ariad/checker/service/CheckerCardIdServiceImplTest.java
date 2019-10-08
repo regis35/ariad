@@ -39,7 +39,7 @@ import bzh.ariad.checker.parser.mrz.MrzResponseJson;
 import bzh.ariad.checker.parser.mrz.MrzResponseParser;
 
 @ExtendWith(MockitoExtension.class)
-class CheckerCardIdServiceImplTest {
+class CheckIOServiceImplTest {
 
 	@Mock
 	private MrzResponseParser parser;
@@ -48,7 +48,7 @@ class CheckerCardIdServiceImplTest {
 	private RestTemplate restTemplate;
 
 	@InjectMocks
-	private CheckerCardIdServiceImpl service;
+	private CheckIOServiceImpl service;
 
 	private String loadJson(String file) {
 		String json = "";
@@ -111,7 +111,7 @@ class CheckerCardIdServiceImplTest {
 	void testBuildBody() {
 
 		List<String> lines = Arrays.asList("l1", "l2");
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 
 		String body = service.buildBody(lines);
 		assertEquals("{\"line1\":\"l1\",\"line2\":\"l2\"}", body);
@@ -121,7 +121,7 @@ class CheckerCardIdServiceImplTest {
 	void testBuildBodyMoreElement() {
 
 		List<String> lines = Arrays.asList("l1", "l2", "l3", "l4");
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 
 		String body = service.buildBody(lines);
 		assertEquals("{\"line1\":\"l1\",\"line2\":\"l2\",\"line3\":\"l3\"}", body);
@@ -131,7 +131,7 @@ class CheckerCardIdServiceImplTest {
 	void testBuildBodyListEmpty() {
 
 		List<String> lines = Arrays.asList();
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 
 		String body = service.buildBody(lines);
 		assertEquals("{}", body);
@@ -139,7 +139,7 @@ class CheckerCardIdServiceImplTest {
 
 	@Test
 	void testBuildCardIdInformation() {
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 
 		BirthDateJson birthdate = new BirthDateJson();
 		birthdate.setDay(10);
@@ -162,7 +162,7 @@ class CheckerCardIdServiceImplTest {
 
 	@Test
 	void testBuildCardIdInformationBirddateIsNull() {
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 
 		HolderDetailJson detail = new HolderDetailJson();
 		detail.setFirstName(Arrays.asList("REGIS", "SECOND"));
@@ -192,7 +192,7 @@ class CheckerCardIdServiceImplTest {
 		c2.setResult("OK");
 		controls.add(c2);
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertTrue(service.isValidCardId(mrzJson));
 
 	}
@@ -212,7 +212,7 @@ class CheckerCardIdServiceImplTest {
 		c2.setResult("None");
 		controls.add(c2);
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertTrue(service.isValidCardId(mrzJson));
 
 	}
@@ -236,7 +236,7 @@ class CheckerCardIdServiceImplTest {
 		c3.setResult("ERROR");
 		controls.add(c3);
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertFalse(service.isValidCardId(mrzJson));
 
 	}
@@ -246,7 +246,7 @@ class CheckerCardIdServiceImplTest {
 
 		MrzResponseJson mrzJson = new MrzResponseJson();
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertFalse(service.isValidCardId(mrzJson));
 
 	}
@@ -258,7 +258,7 @@ class CheckerCardIdServiceImplTest {
 		List<ControlsJson> controls = new ArrayList<>();
 		mrzJson.setControls(controls);
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertFalse(service.isValidCardId(mrzJson));
 
 	}
@@ -266,7 +266,7 @@ class CheckerCardIdServiceImplTest {
 	@Test
 	void testIsValidCardIdNull() {
 
-		CheckerCardIdServiceImpl service = new CheckerCardIdServiceImpl();
+		CheckIOServiceImpl service = new CheckIOServiceImpl();
 		assertFalse(service.isValidCardId(null));
 
 	}

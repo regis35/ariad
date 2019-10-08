@@ -1,9 +1,9 @@
-package bzh.ariad.checker.repository;
+package bzh.ariad.social.facebook.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import bzh.ariad.checker.entity.TokenEntity;
+import bzh.ariad.social.facebook.entity.TokenEntity;
 
 @Repository
 public interface TokenRepository extends CrudRepository<TokenEntity, String> {

@@ -26,7 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import bzh.ariad.checker.dto.CardIdInformation;
 import bzh.ariad.checker.dto.GenderEnum;
 import bzh.ariad.checker.exception.NotValidCardIdException;
-import bzh.ariad.checker.service.CheckerCardIdServiceImpl;
+import bzh.ariad.checker.service.CheckIOServiceImpl;
 import bzh.ariad.checker.ws.CheckerIdCardController;
 
 @AutoConfigureMockMvc
@@ -37,7 +37,7 @@ import bzh.ariad.checker.ws.CheckerIdCardController;
 class CheckerIdCardControllerTestIT {
 
 	@MockBean
-	private CheckerCardIdServiceImpl checkerCardIdService;
+	private CheckIOServiceImpl checkerCardIdService;
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -56,7 +56,7 @@ class CheckerIdCardControllerTestIT {
 
 			when(checkerCardIdService.getInformation(any(), any())).thenThrow(NotValidCardIdException.class);
 
-			mockMvc.perform(get("/checker/cardId/{userId}", userId).param("line1", line1)
+			mockMvc.perform(get("/verify/{userId}", userId).param("line1", line1)
 					.param("line2", line2).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 					.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 					.andReturn();
@@ -81,7 +81,7 @@ class CheckerIdCardControllerTestIT {
 		cii.setLastName("Le Coz");
 		when(checkerCardIdService.getInformation(eq("kiki"), anyList())).thenReturn(cii);
 
-		mockMvc.perform(get("/checker/cardId/{userId}", userId).param("line1", line1)
+		mockMvc.perform(get("/verify/{userId}", userId).param("line1", line1)
 				.param("line2", line2).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().string("{\"userId\":\"kiki\",\"lastName\":\"Le Coz\",\"firstName\":\"Regis\",\"gender\":null,\"birthDate\":\"1978-08-19\"}"))
 				.andReturn();
@@ -100,7 +100,7 @@ class CheckerIdCardControllerTestIT {
 		cii.setLastName("Le Coz");
 		when(checkerCardIdService.getInformation(eq("kiki"), anyList())).thenReturn(cii);
 
-		mockMvc.perform(get("/checker/cardId/{userId}", userId).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+		mockMvc.perform(get("/verify/{userId}", userId).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
 				.andExpect(status().isBadRequest())
 				.andExpect(status().reason("Required String parameter 'line1' is not present"))
@@ -124,7 +124,7 @@ class CheckerIdCardControllerTestIT {
 		cii.setGender(GenderEnum.F);
 		when(checkerCardIdService.getInformation(eq("kiki"), anyList())).thenReturn(cii);
 
-		mockMvc.perform(get("/checker/cardId/{userId}", userId).param("line1", line1)
+		mockMvc.perform(get("/verify/{userId}", userId).param("line1", line1)
 				.param("line2", line2).param("line3", line3).contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
 				.accept(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(content().string("{\"userId\":\"kiki\",\"lastName\":\"Le Coz\",\"firstName\":\"Regis\",\"gender\":\"F\",\"birthDate\":\"1978-08-19\"}"))
 				.andReturn();

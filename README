@@ -1,20 +1,35 @@
+Pré-requis :
+-> Disposer de docker sur sa machine
 
-Authentification via facebook
+Démarrer Redis et MySql à l'aide du docker compose à la racine de ce projet
+-> docker-compose up
 
+Démarrer les deux services :
+-> CheckerID
+-> SocialServiceFacebook
+
+Dans un navigateur web, acceder à l'url suivante : 
 -> http://localhost:8090/login
 
-Liste des utilisateurs
--> http://localhost:8081/users
+S'authentifier à Facebook
+
+Ensuite effectuer la vérification de l'identité de l'utilisateur en appelant le service suivant :
+-> remplacer {userId} par l'id reçu lors de l'authentification
+-> remplacer {line1} & {line2} par les informations d'un carte d'identité
+curl -X GET \
+  'http://localhost:8081/verify/{userId}?line1={line1}&line2={line2}' \
+  -H 'Content-Type: application/json'
+
+Cette méthode retourne tout le false, elle effectue uniquement un appel au service task/mrz du composant checkIO
+
 
 
 Redis
+
+$ docker exec -it redisAriad /bin/bash
+$ redis-cli
 
 Supprime toutes les données de redis
 -> FLUSHALL
 Liste les keys
 -> KEYS *
-
-
-$ docker exec -it redisAriad /bin/bash
-
-$ redis-cli
