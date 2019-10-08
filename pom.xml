@@ -4,7 +4,7 @@
 
 	<groupId>bzh.ariad</groupId>
 	<artifactId>ariad-parent</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Ariad - Parent</name>
@@ -37,7 +37,7 @@
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/regis35/ariad/</developerConnection>
-	  <tag>1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<dependencyManagement>
