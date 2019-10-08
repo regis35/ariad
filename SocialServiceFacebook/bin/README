@@ -1,9 +1,0 @@
-http://localhost:8080/login/oauth2/code/facebook
-
-
-http://localhost:8080/login
-
-
-docker run -d --name myRedis -p 6379:6379 redis
-
-https://piotrminkowski.wordpress.com/2019/03/05/introduction-to-spring-data-redis/
